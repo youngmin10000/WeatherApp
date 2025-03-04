@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+</head>
+<body>
+    <h1>Weather App</h1>
+
+    <form method="POST">
+        <label for="city">Enter City: </label>
+        <input type="text" id="city" name="city" required>
+        <button type="submit">Get Weather</button>
+    </form>
+
+    {% if weather_data %}
+    <h2>Weather for {{ weather_data.city }}</h2>
+    <p>Temperature: {{ weather_data.temperature }}°C</p>
+    <p>Pressure: {{ weather_data.pressure }} hPa</p>
+    <p>Humidity: {{ weather_data.humidity }}%</p>
+    <p>Description: {{ weather_data.description }}</p>
+    <img src="http://openweathermap.org/img/wn/{{ weather_data.icon }}@2x.png" alt="Weather Icon">
+    {% elif error_message %}
+    <p>{{ error_message }}</p>
+    {% endif %}
+</body>
+</html>
